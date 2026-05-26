@@ -28,3 +28,119 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.brush-highlight {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+
+.brush-highlight__text {
+  position: relative;
+  z-index: 2;
+}
+
+.brush-highlight::before {
+  content: "";
+  position: absolute;
+  left: -0.28em;
+  right: auto;
+  width: 0;
+  top: 50%;
+  height: 0.72em;
+  z-index: 1;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #fef08a 0%, #fde047 38%, #facc15 70%, #fef08a 100%);
+  clip-path: polygon(
+    0% 18%,
+    6% 6%,
+    14% 13%,
+    23% 5%,
+    33% 14%,
+    43% 8%,
+    54% 15%,
+    64% 6%,
+    75% 13%,
+    85% 7%,
+    94% 14%,
+    100% 20%,
+    100% 85%,
+    94% 96%,
+    84% 86%,
+    74% 95%,
+    63% 85%,
+    53% 94%,
+    42% 86%,
+    31% 95%,
+    20% 86%,
+    10% 94%,
+    0% 82%
+  );
+  transform: rotate(-1.1deg);
+  animation: brush-reveal-main 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  box-shadow: 0 6px 14px rgba(250, 204, 21, 0.28);
+}
+
+.brush-highlight::after {
+  content: "";
+  position: absolute;
+  left: -0.24em;
+  right: auto;
+  width: 0;
+  top: 52%;
+  height: 0.66em;
+  z-index: 1;
+  border-radius: 4px;
+  opacity: 0.44;
+  background: repeating-linear-gradient(
+    -18deg,
+    rgba(255, 255, 255, 0.48) 0 5px,
+    rgba(255, 255, 255, 0) 5px 10px
+  );
+  clip-path: polygon(
+    0% 22%,
+    11% 10%,
+    23% 18%,
+    35% 8%,
+    49% 16%,
+    61% 9%,
+    73% 17%,
+    86% 9%,
+    100% 20%,
+    100% 80%,
+    88% 93%,
+    75% 84%,
+    62% 94%,
+    48% 86%,
+    34% 95%,
+    21% 85%,
+    9% 94%,
+    0% 79%
+  );
+  transform: rotate(-1.1deg);
+  animation: brush-reveal-texture 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.16s forwards;
+}
+
+@keyframes brush-reveal-main {
+  from {
+    width: 0;
+  }
+  60% {
+    width: calc(100% + 0.42em);
+  }
+  to {
+    width: calc(100% + 0.56em);
+  }
+}
+
+@keyframes brush-reveal-texture {
+  from {
+    width: 0;
+  }
+  65% {
+    width: calc(100% + 0.34em);
+  }
+  to {
+    width: calc(100% + 0.48em);
+  }
+}
