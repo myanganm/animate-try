@@ -33,6 +33,7 @@ body {
   position: relative;
   display: inline-block;
   isolation: isolate;
+  white-space: nowrap;
 }
 
 .brush-highlight__text {
@@ -40,15 +41,19 @@ body {
   z-index: 2;
 }
 
-.brush-highlight::before {
-  content: "";
+.brush-highlight__layer {
   position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  transform: rotate(-1.1deg);
+}
+
+.brush-highlight__layer--main {
   left: -0.28em;
   right: auto;
   width: 0;
   top: 50%;
   height: 0.72em;
-  z-index: 1;
   border-radius: 6px;
   background: linear-gradient(90deg, #fef08a 0%, #fde047 38%, #facc15 70%, #fef08a 100%);
   clip-path: polygon(
@@ -76,20 +81,16 @@ body {
     10% 94%,
     0% 82%
   );
-  transform: rotate(-1.1deg);
-  animation: brush-reveal-main 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
   box-shadow: 0 6px 14px rgba(250, 204, 21, 0.28);
 }
 
-.brush-highlight::after {
-  content: "";
+.brush-highlight__layer--texture {
   position: absolute;
   left: -0.24em;
   right: auto;
   width: 0;
   top: 52%;
   height: 0.66em;
-  z-index: 1;
   border-radius: 4px;
   opacity: 0.44;
   background: repeating-linear-gradient(
@@ -117,30 +118,4 @@ body {
     9% 94%,
     0% 79%
   );
-  transform: rotate(-1.1deg);
-  animation: brush-reveal-texture 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.16s forwards;
-}
-
-@keyframes brush-reveal-main {
-  from {
-    width: 0;
-  }
-  60% {
-    width: calc(100% + 0.42em);
-  }
-  to {
-    width: calc(100% + 0.56em);
-  }
-}
-
-@keyframes brush-reveal-texture {
-  from {
-    width: 0;
-  }
-  65% {
-    width: calc(100% + 0.34em);
-  }
-  to {
-    width: calc(100% + 0.48em);
-  }
 }
