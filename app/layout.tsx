@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+// ScrollSmoother requires ScrollTrigger
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { SplitText } from "gsap/SplitText";
 import "./globals.css";
+
+gsap.registerPlugin(useGSAP,ScrollTrigger,ScrollSmoother,SplitText);
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
